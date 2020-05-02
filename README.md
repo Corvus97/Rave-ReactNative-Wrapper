@@ -97,7 +97,7 @@ const PayNow = (props) => {
             <View  style={styles.container}>
               <Rave
                 button={props => (
-                    <PayWithCard {...props}/>
+                    <PayNow {...props}/>
                   )}
                 raveKey="<your-api-key-here>"
                 amount={20000}

@@ -57,7 +57,9 @@ You can pull in react-native-rave-webview into app with the steps below;
 
       }
 
-#### 3. Build your own Pay button component (Make sure you pass down the props.onpress into it)
+#### 3.
+
+### - Build your own Pay button component (Make sure you pass down the props.onpress into it)
 
 ```
 const PayNow = (props) => {
@@ -71,6 +73,21 @@ const PayNow = (props) => {
     </TouchableOpacity>
   )
 }
+```
+
+### OR
+
+### - Just passing buttonText, textStyles and btntyles
+
+```
+            <Rave
+                buttonText=  "PAY NOW"
+                btnStyles={{backgroundColor:'green', width:100, alignContent:  'center' }}
+                textStyles={{ color:'white', alignSelf:  'center', }}
+                ...
+                ...
+                ...
+                />
 ```
 
 #### 4. Use component (ensure to set currency for the desired payment method to display)
@@ -106,6 +123,9 @@ const PayNow = (props) => {
 | Name                     |                                               use/description                                               |              extra |
 | :----------------------- | :---------------------------------------------------------------------------------------------------------: | -----------------: |
 | `button`                 |                           Receives your button component and passes down `props`                            |             `null` |
+| `buttonText`             |                                         Defines text on the button                                          |             `null` |
+| `textStyles`             |                                      Defines styles for text in button                                      |             `null` |
+| `btnStyles`              |                                          Defines style for button                                           |             `null` |
 | `raveKey`                |           Public or Private FlutterWave Rave key(visit https://rave.flutterwave.com to get yours)           |             `null` |
 | `amount`                 |                                              Amount to be paid                                              |             `null` |
 | `txref`                  |                                     set TransactionRef for transaction                                      |             `null` |

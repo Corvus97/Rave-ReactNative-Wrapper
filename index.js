@@ -18,7 +18,7 @@ let isLoading;
 let setIsLoading;
 
 export const Rave = props => {
-  let button = props.button === undefined ? 
+  let button = props.button === undefined ?
   <TouchableOpacity style={props.btnStyles} onPress={() => setShowModal(true)}>
       <Text style={props.textStyles}>{props.buttonText}</Text>
   </TouchableOpacity>
@@ -27,34 +27,34 @@ export const Rave = props => {
   [showModal, setShowModal] = useState(false);
   [isLoading, setIsLoading] = useState(false);
   [url, setURL] = useState();
-  
+
   useEffect(()=>{
     setIsLoading(true)
     fetchURL();
     setIsLoading(false);
   },[props.txref]);
 
-  const fetchURL =  ()=>{ 
+  const fetchURL = () => {
     let data = {
+      ...props,
       PBFPubKey: props.raveKey,
       currency: props.currency || "NGN",
       country: props.country  || "NG",
-      ...props,
       customer_phone: props.customerPhone || props.billingMobile,
       customer_firstname: props.customer_firstname || props.billingName,
       customer_email: props.customerEmail || props.billingEmail,
       customer_lastname: props.customer_lastname || "",
       redirect_url:"https://ravesandboxapi.flutterwave.com/redirection",
-    }
-       fetch("https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
-       {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
+    };
+
+    fetch("https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
       .then(response => response.json())
       .then(response => {
         setIsLoading(false)
@@ -64,14 +64,11 @@ export const Rave = props => {
         setIsLoading(false)
         setURL("")
         Alert.alert(
-            "Transaction Failed",
-            "Please try again",
-            [
-              { text: "OK", onPress: () => console.log(error) }
-            ],
-            { cancelable: false }
-          );
-    
+          "Transaction Failed",
+          "Please try again",
+          [ { text: "OK", onPress: () => console.log(error) } ],
+          { cancelable: false }
+        );
       });
   }
 
@@ -217,7 +214,7 @@ const parseResponse = (props, data) => {
       }
     }
     else { // handle live
-      let parsedRes = JSON.parse(decode(match[2])); 
+      let parsedRes = JSON.parse(decode(match[2]));
       response = {
         txRef: props.txref,
         flwRef: parsedRes.flwRef || "",

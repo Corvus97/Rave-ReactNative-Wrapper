@@ -80,7 +80,7 @@ const PayNow = (props) => {
             <View  style={styles.container}>
               <Rave
                     buttonText="Pay with Flutterwave"
-                    raveKey="FLWPUBK_TEST-e2edac55d072562ca37a991a3d97eeb3-X"
+                    raveKey="FLWPUBK_TEST-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-X"
                     amount={10}
                     currency={'NGN'}
                     country={'NG'}
